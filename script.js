@@ -43,10 +43,54 @@ const restaurant = {
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}.`
     );
   },
-};
 
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+    // console.log(
+    //   `Here is your delicious pizza with ${mainIngredient} ${
+    //     otherIngredients.length > 0 ? otherIngredients : ``
+    //   }.`
+    // );
+  },
+};
+// 1) Destructuring:
+// Rest Arrays:
+// SPREAD,bc on right side of =
+const arr = [1, 2, ...[3, 4]];
+
+// REST, bc on left side of =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+// Rest Obejcts:
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+// 2) Funcitons:
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
+};
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 5, 3, 2, 1, 4);
+
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza(`mushroom`, `onion`, `olives`, `spinach`);
+restaurant.orderPizza(`mushroom`);
+/*
 ////////////////////////////////////////////////////////////////////
-// The Spread Operator:
+// The Spread Operator (...):
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
 console.log(badNewArr);
@@ -95,7 +139,7 @@ restaurantCopy.name = `Ristorante Roma`;
 console.log(restaurant.name);
 console.log(restaurantCopy.name);
 
-/*
+
 ////////////////////////////////////////////////////////////////////
 // Destructuring Objects:
 restaurant.orderDelivery({
