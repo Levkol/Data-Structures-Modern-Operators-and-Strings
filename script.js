@@ -54,8 +54,54 @@ const restaurant = {
     // );
   },
 };
+
+restaurant.numGuests = 0;
+const guest = restaurant.numGuests || 10;
+console.log(guest);
+
+// Nullish values: null and undefined (NOT 0 or ``)
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+
+/*
+////////////////////////////////////////////////////////////////////
+// Short Circuiting (&& and ||):
+
+// Use ANY data type, return ANY data type, short-circuiting:
+console.log(3 || `Jonas`);
+console.log(`` || `Jonas`);
+console.log(true || 0);
+console.log(undefined || null);
+
+console.log(undefined || 0 || `` || `Hello` || 23 || null);
+
+//Practice Example:
+restaurant.numGuests = 23;
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guest1);
+
+const guest2 = restaurant.numGuests || 10;
+console.log(guest2);
+
+console.log(`---------AND--------`);
+console.log(0 && `Jonas`);
+console.log(7 && `Jonas`);
+
+console.log(`Hello` && 23 && null && `jonas`);
+
+//Practice Example:
+if (restaurant.orderPizza) {
+  restaurant.orderPizza(`mushrooms`, `spinach`);
+}
+
+restaurant.orderPizza && restaurant.orderPizza(`mushroom`, `spinach`);
+
+/*
+////////////////////////////////////////////////////////////////////
+// Rest Pattern and Parameters:
 // 1) Destructuring:
 // Rest Arrays:
+
 // SPREAD,bc on right side of =
 const arr = [1, 2, ...[3, 4]];
 
@@ -88,7 +134,7 @@ add(...x);
 
 restaurant.orderPizza(`mushroom`, `onion`, `olives`, `spinach`);
 restaurant.orderPizza(`mushroom`);
-/*
+
 ////////////////////////////////////////////////////////////////////
 // The Spread Operator (...):
 const arr = [7, 8, 9];
