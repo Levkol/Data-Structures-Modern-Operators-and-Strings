@@ -5,6 +5,23 @@
 //   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
 // Data needed for first part of the section
+const weekdays = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `san`];
+
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -12,19 +29,11 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
+  // ES6 enhanced object literals
+  openingHours,
+
+  order(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
   orderDelivery: function ({
@@ -55,6 +64,43 @@ const restaurant = {
   },
 };
 
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log(restaurant.openingHours.mon.open);
+
+// WITH Optional Chaining:
+console.log(restaurant.openingHours?.mon?.open);
+
+// Exmaple
+const days = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `san`];
+
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? `closed`;
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+console.log(restaurant.order?.(0, 1) ?? `Method does not exist`);
+console.log(restaurant.oderRisotto?.(0, 1) ?? `Method does not exist`);
+
+// Arrays
+//Jonas:
+const user = [
+  {
+    name: `Jonas`,
+    email: `hello@jonas.io`,
+  },
+];
+
+// const user = [];
+
+console.log(user[0]?.name ?? `User array empty`);
+
+if (user.length > 0) console.log(user[0].name);
+else console.log(`User array empty`);
+//Exist
+// if (restaurant.openingHours.fri) console.log(restaurant.openingHours.fri.open);
+
+/*
+///////////////////////////////////////////////////////
 // For Of Loop:
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
@@ -71,7 +117,10 @@ for (const item of menu.entries()) {
 for (const [i, el] of menu.entries()) {
   console.log(`${i + 1}: ${el}`);
 }
+
+
 /*
+
 ///////////////////////////////////////////////////////
 // Coding Challenge 1:
 
@@ -91,7 +140,8 @@ Test data for 6.: First, use players 'Davies', 'Muller', 'Lewandowski' and 'Kimm
 Then, call the function again with players from game.scored
 
 GOOD LUCK 😀
-
+*/
+/*
 
 const game = {
   team1: 'Bayern Munich',
@@ -134,6 +184,7 @@ const game = {
   },
 };
 
+
 // 1.
 const [player1, player2] = game.players;
 console.log(player1, player2);
@@ -168,10 +219,9 @@ printGoals(...game.scored);
 
 // 7.
 team1 < team2 && console.log(`Team 1 is more likely to win`);
-team1 > team2 && console.log(`Team 1 is more likely to win`);
-*/
+team1 > team2 && console.log(`Team 2 is more likely to win`);
 
-/*
+
 ////////////////////////////////////////////////////////////////////
 // Logical Assignment Operator:
 
