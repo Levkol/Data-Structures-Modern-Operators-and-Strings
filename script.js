@@ -65,6 +65,82 @@ const restaurant = {
 };
 
 ///////////////////////////////////////////////////////
+// Working with strings: Part 2
+const airline = `TAP Air Portugal`;
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase())
+
+
+// Fix capitalization in name:
+const passenger = `jOnAS`; // Jonas
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect)
+
+//function
+const passengerName = function(name){
+  const passengerLowerName = name.toLowerCase();
+  const passengerCorrectName = passengerLowerName[0].toUpperCase() + passengerLowerName.slice(1);
+  console.log(passengerCorrectName)
+};
+
+passengerName(`LEVenTE`);
+
+// Compaaring email:
+const email = `hello@jonas.io`;
+const loginEmail = `  Hello@Jonas.Io \n`;
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+// console.log(trimmedEmail)
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail)
+console.log(email === normalizedEmail);
+
+//funciton
+const userEmail = function(signupEmail, loginEmail){
+const emailCorrection = loginEmail.toLowerCase().trim();
+console.log(signupEmail === emailCorrection);
+}
+userEmail(`nagy46levente@gmail.com`, `    nAGY46levENte@gmail.com  \n`)
+
+// Replacing:
+const priceGB = `288,97₤`
+const priceUSD = priceGB.replace(`₤`, `$`).replace(`,`, `.`);
+console.log(priceUSD);
+
+const annoncement = `All passengers come to boarding door 23. Boarding door 23!`;
+console.log(annoncement.replaceAll(`door`, `gate`));
+
+console.log(annoncement.replaceAll(/door/g, `gate`));
+
+// Booleans:
+const plane = `Airbus A32neo`;
+console.log(plane.includes(`A32`));
+console.log(plane.includes(`Boeing`));
+console.log(plane.startsWith(`Air`));
+
+if( plane.startsWith(`Airbus`) && plane.endsWith(`neo`)){
+  console.log(`Part of the NEW Airbus family`);
+}
+
+// Pracrice Exercise
+const checkBaggage = function(items){
+const baggege = items.toLowerCase();
+if(baggege.includes(`knife`) || baggege.includes(`gun`)){
+console.log(`You are not allowed on board`);
+}else{
+  console.log(`Welcome aboard!`);
+}
+};
+
+checkBaggage(`I have a laptop, some Food and a pocket Knife`);
+checkBaggage(`Socks and camera`);
+checkBaggage(`Got some snacks and a gun for protection`);
+
+/*
+///////////////////////////////////////////////////////
 // Working with strings: Part 1
 const airline = `TAP Air Portugal`;
 const plane = `A320`;
@@ -104,6 +180,8 @@ checkMiddleSeat(`3E`);
 
 console.log(new String(`jonas`));
 console.log(typeof new String(`jonas`));
+-
+*/
 /*
 ///////////////////////////////////////////////////////
 // Maps: Iteration
