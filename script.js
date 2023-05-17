@@ -65,6 +65,56 @@ const restaurant = {
 };
 
 ///////////////////////////////////////////////////////
+// Working with strings: Part 3
+
+// Split and join
+console.log(`a+very+nice+string`.split(`+`));
+console.log(`Jonas Schmedtmann`.split(` `));
+
+const [firstName, lastName] = `Jonas Schmedtmann`.split(` `);
+
+const newName = [`Mr.`, firstName, lastName.toUpperCase()].join(` `);
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(` `);
+  const namesUpper = [];
+  for (const n of names) {
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(` `));
+};
+
+capitalizeName(`jessica ann smith davis`);
+capitalizeName(`levente nagy`);
+
+// Padding:
+const message = `Go to gate 23!`;
+console.log(message.padStart(25, `+`).padEnd(30, `+`));
+console.log(`Jonas`.padStart(25, `+`));
+
+const maskCreditCard = function (number) {
+  const str = number + ``;
+  const last = str.slice(-4);
+  return last.padStart(str.length, `*`);
+};
+
+console.log(maskCreditCard(43378463864647384));
+console.log(maskCreditCard(`348236126412418498412`));
+
+// Repeat
+const message2 = `Bad weather... All Departues Delayed...`;
+console.log(message2.repeat(5));
+
+const planeInLine = function (n) {
+  console.log(`There are ${n} planes in line ${`✈️`.repeat(n)}`);
+};
+planeInLine(5);
+planeInLine(3);
+planeInLine(12);
+/*
+///////////////////////////////////////////////////////
 // Working with strings: Part 2
 const airline = `TAP Air Portugal`;
 
@@ -138,6 +188,7 @@ console.log(`You are not allowed on board`);
 checkBaggage(`I have a laptop, some Food and a pocket Knife`);
 checkBaggage(`Socks and camera`);
 checkBaggage(`Got some snacks and a gun for protection`);
+*/
 
 /*
 ///////////////////////////////////////////////////////
